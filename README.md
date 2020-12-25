@@ -16,7 +16,7 @@
 ### Association
 _
 - has_many :Items
-- has_many :Buys
+- has_many :UserBuys
 
 
 # Items
@@ -36,7 +36,7 @@ _
 ### Association
 
 - belongs_to :user
-- belongs_to :buy
+- has_one :UserBuys
 
 
 # Buys
@@ -53,7 +53,6 @@ _
 ### Association
 
 - belongs_to :user
-- has_one :buy
 - belongs_to :user_buy
 
 # UserBuys
@@ -66,4 +65,5 @@ _
 ### Association
 
 - belongs_to :user
-- belongs_to :buy
+- has_one :buy
+- belongs_to :item
