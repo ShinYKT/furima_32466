@@ -15,8 +15,8 @@
 
 ### Association
 _
-- has_many :Items
-- has_many :UserBuys
+- has_many :items
+- has_many :uesr_buys
 
 
 # Items
@@ -28,7 +28,7 @@ _
 | category_id      | integer | null: false |
 | state_id         | integer  | null: false |
 | delivery_fee_id  | integer  | null: false |
-| delivery_area_id | integer  | null: false |
+| prefecture_id    | integer  | null: false |
 | delivery_day_id | integer  | null: false |
 | price         | integer | null: false |
 | user   | references | null: false, foreign_key: true |
@@ -37,7 +37,7 @@ _
 ### Association
 
 - belongs_to :user
-- has_one :UserBuy
+- has_one :user_buy
 
 
 # Buys
@@ -50,7 +50,7 @@ _
 | address          | string | null: false |
 | building_name    | string |  |
 | phone_number     | string | null: false |
-| UserBusys  | references | null: false, foreign_key: true |
+| user_buy  | references | null: false, foreign_key: true |
 
 ### Association
 
