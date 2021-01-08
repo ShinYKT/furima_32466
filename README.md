@@ -16,7 +16,7 @@
 ### Association
 _
 - has_many :items
-- has_many :uesr_buys
+- has_many :user_buys
 
 
 # Items
