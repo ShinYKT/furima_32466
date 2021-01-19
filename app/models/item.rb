@@ -2,15 +2,20 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one:user_buy
   has_one_attached :image
+  
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :delivery_day
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :delivery_fee
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :state
 
 
-  validates :image, presence: true
+  
   validates :name, presence: true
   validates :text , presence: true
   validates :category_id, numericality: { other_than: 1 }
