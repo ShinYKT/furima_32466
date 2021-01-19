@@ -49,6 +49,45 @@ RSpec.describe User, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
-      
+    it 'category_idが1だと登録できない' do
+      @item.category_id = '1'  
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
+    end  
+    it 'state_idが1だと登録できない' do
+      @item.state_id = '1'  
+      @item.valid?
+      expect(@item.errors.full_messages).to include("State must be other than 1")
+    end  
+    it 'delivery_fee_idが1だと登録できない' do
+      @item.delivery_fee_id = '1'  
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+    end  
+    it 'prefecture_idが1だと登録できない' do
+      @item.prefecture_id = '1'  
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+    end  
+    it 'delivery_day_idが1だと登録できない' do
+      @item.delivery_day_id = '1'  
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
+    end  
+    it 'priceが数字以外だと登録できない' do
+      @item.price = 'じ'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+    end
+    it 'priceが299以下だと登録できない' do
+      @item.price = '299'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+    end
+    it 'priceが10000000以上だと登録できない' do
+      @item.price = '10000000'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+    end
   end
 end
