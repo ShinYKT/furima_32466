@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   belongs_to :state
 
 
-  
+  validates :image, presence: true
   validates :name, presence: true
   validates :text , presence: true
   validates :category_id, numericality: { other_than: 1 }
