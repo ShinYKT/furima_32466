@@ -14,17 +14,20 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :state
 
+  
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :text
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  end
 
-  validates :image, presence: true
-  validates :name, presence: true
-  validates :text , presence: true
-  validates :category_id, numericality: { other_than: 1 }
-  validates :state_id , numericality: { other_than: 1 }
-  validates :delivery_fee_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :delivery_day_id, numericality: { other_than: 1 }
-  with_options presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 } do
-    validates :price
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :state_id
+    validates :delivery_fee_id
+    validates :prefecture_id
+    validates :delivery_day_id
   end
 
 

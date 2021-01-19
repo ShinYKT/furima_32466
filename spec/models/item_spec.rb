@@ -4,10 +4,17 @@ RSpec.describe User, type: :model do
   describe '出品機能' do
     before do
       @item = FactoryBot.build(:item)
+      @item.image = fixture_file_upload('public/images/test.png')
     end
   
     it '全ての項目が正しく入力されていれば登録できる' do
       expect(@item).to be_valid
+    end
+
+    it 'imageが空と登録できない' do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
     end
     it 'nameが空と登録できない' do
       @item.name = ''
@@ -89,5 +96,6 @@ RSpec.describe User, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
     end
+
   end
 end
