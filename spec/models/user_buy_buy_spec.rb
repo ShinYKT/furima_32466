@@ -25,7 +25,7 @@ RSpec.describe UserBuyBuy, type: :model do
         expect(@user_buy_buy.errors.full_messages).to include("Postal code can't be blank")
       end 
       it 'prefecture_idが空と購入できない' do
-        @user_buy_buy.prefecture_id = '1'  
+        @user_buy_buy.prefecture_id = 1
         @user_buy_buy.valid?
         expect(@user_buy_buy.errors.full_messages).to include("Prefecture can't be blank")
       end 
