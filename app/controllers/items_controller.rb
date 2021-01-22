@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :basic_auth
   before_action :authenticate_user!, only: [:create, :new, :edit, :update]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
@@ -56,5 +57,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.permit(:image, :name, :text, :category_id, :state_id, :delivery_fee_id, :prefecture_id, :delivery_day_id, :price).merge(user_id: current_user.id)
+  end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == 'admin' && password == '2222'
+    end
   end
 end
