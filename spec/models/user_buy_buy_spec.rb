@@ -14,7 +14,7 @@ RSpec.describe UserBuyBuy, type: :model do
       expect(@user_buy_buy.errors.full_messages).to include("Postal code can't be blank")
     end 
     it 'prefecture_idが空と購入できない' do
-      @user_buy_buy.prefecture_id = ''  
+      @user_buy_buy.prefecture_id = '1'  
       @user_buy_buy.valid?
       expect(@user_buy_buy.errors.full_messages).to include("Prefecture can't be blank")
     end 
@@ -37,6 +37,16 @@ RSpec.describe UserBuyBuy, type: :model do
       @user_buy_buy.valid?
       expect(@user_buy_buy.errors.full_messages).to include("Phone number can't be blank")
     end 
+    it 'user_idが空と購入できない' do
+      @user_buy_buy.user_id = ''
+      @user_buy_buy.valid?
+      expect(@user_buy_buy.errors.full_messages).to include("User can't be blank")
+    end 
+    it 'item_idが空と購入できない' do
+      @user_buy_buy.item_id = ''
+      @user_buy_buy.valid?
+      expect(@user_buy_buy.errors.full_messages).to include("Item can't be blank")
+    end 
     it 'tokenが空と購入できない' do
       @user_buy_buy.token= ''
       @user_buy_buy.valid?
@@ -49,6 +59,11 @@ RSpec.describe UserBuyBuy, type: :model do
     end 
     it 'phone_numberが12桁以上だと購入できない' do
       @user_buy_buy.phone_number = '090888888888'
+      @user_buy_buy.valid?
+      expect(@user_buy_buy.errors.full_messages).to include("Phone number is invalid.")
+    end 
+    it 'phone_numberが英数混合だと購入できない' do
+      @user_buy_buy.phone_number = 'h0000000000'
       @user_buy_buy.valid?
       expect(@user_buy_buy.errors.full_messages).to include("Phone number is invalid.")
     end 
