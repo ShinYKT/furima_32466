@@ -4,7 +4,7 @@
 
   def index
       @user_buy_buy = UserBuyBuy.new
-      if @item.user_id == current_user.id or @item.user_buy.present?
+      if @item.user_id == current_user.id || @item.user_buy.present?
         redirect_to root_path
       end
       
