@@ -69,8 +69,9 @@ RSpec.describe UserBuyBuy, type: :model do
         @user_buy_buy.valid?
         expect(@user_buy_buy.errors.full_messages).to include("Phone number is invalid.")
       end 
-      it 'phone_numberが英数混合だと購入できない' do
-        @user_buy_buy.phone_number = 'h0000000000'
+      
+      it 'phone_numberが全角数字だと購入できない' do
+        @user_buy_buy.phone_number = '０００００００００００'
         @user_buy_buy.valid?
         expect(@user_buy_buy.errors.full_messages).to include("Phone number is invalid.")
       end 
