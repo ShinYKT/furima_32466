@@ -1,6 +1,6 @@
   class BuysController < ApplicationController
     before_action :authenticate_user!, only: [:index, :create]
-    before_action :item_id, only: [:index, :create]
+    before_action :set_item, only: [:index, :create]
 
   def index
       @user_buy_buy = UserBuyBuy.new
@@ -42,7 +42,7 @@
     )
   end
   
-  def item_id
+  def set_item
   @item = Item.find(params[:item_id])
   end
 end
